@@ -41,6 +41,7 @@ public class Project {
 		this.description = description;
 	}
 	
+	
 //	@Transient
 	public String getWifeName() {
 		return wifeName;
