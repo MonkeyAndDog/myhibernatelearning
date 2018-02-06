@@ -35,6 +35,7 @@
 		<mapping class="com.mrhu.hibernate.model.Teacher"/>
 		<mapping class="com.mrhu.hibernate.model.Project"/>
 		<mapping class="com.mrhu.hibernate.model.Course"/>
+		<mapping class="com.mrhu.hibernate.model.Monkey"/>
 
     </session-factory>
 

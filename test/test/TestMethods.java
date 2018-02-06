@@ -2,6 +2,7 @@ package test;
 
 import static org.junit.Assert.*;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.junit.Test;
@@ -13,7 +14,7 @@ import com.mrhu.hibernate.model.Teacher;
 import com.mrhu.hibernate.model.TeacherPK;
 import com.mrhu.hibernate.util.MySession;
 
-public class TestMethod {
+public class TestMethods {
 
 	@Test
 	public void testDelete() {
@@ -54,6 +55,57 @@ public class TestMethod {
 //		System.out.println(s.getAge());
 		System.out.println(c.getName());
 		session.getTransaction().commit();
+	}
+	
+	@Test
+	public void testUpdate1() {
+		
+		Course c2;
+		
+		SessionFactory sessionFactory = MySession.getSessionFactory();
+		Session session = sessionFactory.getCurrentSession();
+		session.beginTransaction();
+		Course c = session.get(Course.class, 1);
+		c2 = session.load(Course.class, 1);
+		session.getTransaction().commit();
+		
+//		c.setName("jfdskl");	
+		c2.setName("yyy");
+		
+		Session session2 = sessionFactory.getCurrentSession();
+		session2.beginTransaction();
+		session2.update(c2);
+		session2.getTransaction().commit();
+	}
+	
+	@Test
+	public void testUpdate2() {
+		
+		Course c2;
+		SessionFactory sessionFactory = MySession.getSessionFactory();
+		Session session = sessionFactory.getCurrentSession();
+		session.beginTransaction();
+		c2 = session.load(Course.class, 1);
+		
+		c2.setName("iii");
+		
+		session.getTransaction().commit();
+
+	}
+	
+	@Test
+	public void testUpdate3() {
+		
+		SessionFactory sessionFactory = MySession.getSessionFactory();
+		Session session = sessionFactory.getCurrentSession();
+		session.beginTransaction();
+		
+//		Query q = session.createQuery("update Project p set p.proName = 'QQQ' where p.Id = 1");
+		Query q = session.createQuery("update Monkey m set m.name='mmm' where m.id = 1");
+		q.executeUpdate();
+		
+		session.getTransaction().commit();
+
 	}
 
 }
