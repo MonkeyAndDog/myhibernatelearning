@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.tool.hbm2ddl.SchemaExport;
 import org.junit.Test;
 
 import com.mrhu.hibernate.model.Course;
@@ -106,6 +108,11 @@ public class TestMethods {
 		
 		session.getTransaction().commit();
 
+	}
+	
+	@Test
+	public void testSchemaExport() {
+		//API²»Ò»ÖÂ
 	}
 
 }

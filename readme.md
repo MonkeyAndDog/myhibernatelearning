@@ -51,4 +51,6 @@ hibernate学习
 	* flush方法
 		1. 强制进行从内存到数据库的同步
 		2. flushMode
+3. SchemaExport
+	* 生成建表语句
 	
