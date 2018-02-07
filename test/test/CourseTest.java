@@ -17,7 +17,7 @@ public class CourseTest {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		Course course = new Course();
-		course.setName("Tom");
+		course.setName("fjf");
 		session.save(course);
 		session.getTransaction().commit();
 		
