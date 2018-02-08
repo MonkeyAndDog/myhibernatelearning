@@ -29,14 +29,27 @@
         <property name="show_sql">true</property>
 
         <!-- Drop and re-create the database schema on startup -->
-        <property name="hbm2ddl.auto">update</property>
+        <property name="hbm2ddl.auto">create</property>
 
+		<!-- 
         <mapping resource="com/mrhu/hibernate/model/Student.hbm.xml"/>
 		<mapping class="com.mrhu.hibernate.model.Teacher"/>
 		<mapping class="com.mrhu.hibernate.model.Project"/>
 		<mapping class="com.mrhu.hibernate.model.Course"/>
 		<mapping class="com.mrhu.hibernate.model.Monkey"/>
-
+		<mapping class="com.mrhu.hibernate.model2.Husband"/>
+		<mapping class="com.mrhu.hibernate.model2.Wife"/>
+		<mapping class="com.mrhu.hibernate.componment.Husband"/>
+		 
+		<mapping class="com.mrhu.hibernate.mang2one.Group"/>
+		<mapping class="com.mrhu.hibernate.mang2one.User"/>
+		
+		<mapping class="com.mrhu.hibernate.one2many.Group"/>
+		<mapping class="com.mrhu.hibernate.one2many.User"/>
+		-->
+		
+		<mapping class="com.mrhu.hibernate.many2many.Student"/>
+		<mapping class="com.mrhu.hibernate.many2many.Teacher"/>
     </session-factory>
 
 </hibernate-configuration>

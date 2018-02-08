@@ -1,4 +1,4 @@
-package com.mrhu.hibernate.model;
+package com.mrhu.hibernate.model2;
 
 import java.util.Date;
 
