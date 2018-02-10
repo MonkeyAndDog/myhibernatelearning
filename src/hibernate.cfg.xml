@@ -61,9 +61,34 @@
 		<mapping class="com.mrhu.hibernate.joined.Teacher"></mapping>
 		<mapping class="com.mrhu.hibernate.joined.Person"></mapping>
 		<mapping class="com.mrhu.hibernate.joined.Student"></mapping>
-		-->
+		
 		
 		<mapping class="com.mrhu.hibernate.tree.Org"/>
+		
+		<mapping class="com.mrhu.hibernate.coursescorestudent.Student"></mapping>
+		<mapping class="com.mrhu.hibernate.coursescorestudent.Score"></mapping>
+		<mapping class="com.mrhu.hibernate.coursescorestudent.Course"></mapping>
+		-->
+		
+		<mapping class="com.mrhu.hibernate.topic.Category"></mapping>
+		<mapping class="com.mrhu.hibernate.topic.Msg"></mapping>
+		<mapping class="com.mrhu.hibernate.topic.Topic"></mapping>
+		
     </session-factory>
 
 </hibernate-configuration>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

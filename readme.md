@@ -181,6 +181,13 @@ private void print(Org o, int level) {
 	}
 }
 ```
+
+>解决自动生成ID会混肴的方法：标注使用不同的SequenceGenerator
+
+8. Hibernate查询（HQL）
+	1. NativeSQL > HQL
+	2. QL应该和导航关系结合，方便查询
+	
 	
 	
 	
