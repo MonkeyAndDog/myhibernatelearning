@@ -115,7 +115,8 @@ hibernate学习
 	1. 使用@Inheritance()，joined包内示例
 7. 树状映射
 	1. 重要！
-	```
+	
+```
 @Entity
 public class Org {
 	private int id;
@@ -153,7 +154,9 @@ public class Org {
 		this.parent = parent;
 	}
 }
+```
 
+```
 @Test
 public void testLoad() {
 	testSave();
@@ -164,7 +167,9 @@ public void testLoad() {
 	session.getTransaction().commit();
 	
 }
+```
 
+```
 private void print(Org o, int level) {
 	String preStr = "";
 	for(int i = 0;i < level;i++) {
@@ -175,7 +180,7 @@ private void print(Org o, int level) {
 		print(child, level+1);
 	}
 }
-	```
+```
 	
 	
 	
