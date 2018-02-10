@@ -1,6 +1,7 @@
 # myhibernatelearning
 hibernate学习
 ---
+
 ## Id生成策略
 1. xml生成Id
 	* generator
@@ -22,6 +23,7 @@ hibernate学习
 		2. @EmbeddedId
 		3. @Id @IdClass
 ---
+
 ## Hibernate核心API
 1. Configuration
 	* 产生SessionFactory
@@ -53,8 +55,9 @@ hibernate学习
 		2. flushMode
 3. SchemaExport
 	* 生成建表语句
-	
-## 约束关系
+---	
+
+## 约束关系 （※代表重要程度）
 1. 一对一单项外键关联
 	* @OneToOne，@JoinColumn(name="表里面的字段自定义命名")
 2. 一对一双向外键关联
@@ -68,5 +71,126 @@ hibernate学习
 	* @JoinColumns
 6. 组件映射
 	* @Embedded
-7. 
+7. 一对多单向关联 ※
+	* @OneToMany
+8. 多对一单向关联 ※
+	* @ManyToOne
+9. 多对多单向关联 ※
+	* @ManyToMany
+10. 多对多双向关联 ※
+	* 在其中一边设置@ManyToMany(mappedBy="")
+---
+
+## 增删改查CURD
+1. 两者之间有关联
+	* 默认：两者保存时互不影响
+	* 设置@ManyToOne的cascade属性(cascade对读取没影响，只有CUD)
+	* 规律 
+		>双向关系在程序中要设置双向关联
+		>双向一定要设置mappedBy
+	* cascade属性（不要太重视，只是省了一点点麻烦）
+		1. Cascade指明了做什么操作时关联对象是绑定在一起的
+		2. refresh = A里面需要读 B 改过后的数据
+	* fetch属性：多的那一边默认是eager，少的那一边默认是lazy
+		>不要两边都设置eager，否则会冗余
+		>对多方设置fetch时候要谨慎，结合具体应用，一般用lazy不用eager。
+2. ORM编程模型
+	1. 映射模型
+		* JPA Annotation
+		* hibernate Annotation Extension
+		* hibernate xml
+		* JPA xml
+	2. 编程接口
+		* JPA
+		* Hibernate
+3. 删除对象的时候要先打破级联关系，设级联对象为 null，或者用HQL语句。如果不删除对应的记录，记录就成了垃圾数据
+4. 想要删除或者更新，先做load，除了精确知道ID之外
+5. 集合映射
+	1. Set
+	2. List
+		* OrderBy
+	3. Map		
+		* MapKey
+6. 继承映射(三种方式)
+	1. 使用@Inheritance()，joined包内示例
+7. 树状映射
+	1. 重要！
+	```
+@Entity
+public class Org {
+	private int id;
+	private String name;
+	private Set<Org> children = new HashSet<Org>();
+	private Org parent;
+	
+	@Id
+	@GeneratedValue
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	@OneToMany(mappedBy="parent", cascade=CascadeType.ALL)
+	public Set<Org> getChildren() {
+		return children;
+	}
+	public void setChildren(Set<Org> children) {
+		this.children = children;
+	}
+	@ManyToOne
+	@JoinColumn(name="p_id")
+	public Org getParent() {
+		return parent;
+	}
+	public void setParent(Org parent) {
+		this.parent = parent;
+	}
+}
+
+@Test
+public void testLoad() {
+	testSave();
+	session = sessionFactory.getCurrentSession();
+	session.beginTransaction();
+	Org o = session.get(Org.class, 1);
+	print(o, 0);
+	session.getTransaction().commit();
+	
+}
+
+private void print(Org o, int level) {
+	String preStr = "";
+	for(int i = 0;i < level;i++) {
+		preStr += "---";
+	}
+	System.out.println(preStr + o.getName());
+	for(Org child : o.getChildren()) {
+		print(child, level+1);
+	}
+}
+	```
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	

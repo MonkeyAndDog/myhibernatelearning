@@ -46,10 +46,24 @@
 		
 		<mapping class="com.mrhu.hibernate.one2many.Group"/>
 		<mapping class="com.mrhu.hibernate.one2many.User"/>
-		-->
+		
 		
 		<mapping class="com.mrhu.hibernate.many2many.Student"/>
 		<mapping class="com.mrhu.hibernate.many2many.Teacher"/>
+		
+		
+		<mapping class="com.mrhu.hibernate.crud.Group"/>
+		<mapping class="com.mrhu.hibernate.crud.User"/>
+		
+		<mapping class="com.mrhu.hibernate.collection.mapping.Group"></mapping>
+		<mapping class="com.mrhu.hibernate.collection.mapping.User"></mapping>
+		
+		<mapping class="com.mrhu.hibernate.joined.Teacher"></mapping>
+		<mapping class="com.mrhu.hibernate.joined.Person"></mapping>
+		<mapping class="com.mrhu.hibernate.joined.Student"></mapping>
+		-->
+		
+		<mapping class="com.mrhu.hibernate.tree.Org"/>
     </session-factory>
 
 </hibernate-configuration>

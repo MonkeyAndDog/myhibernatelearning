@@ -13,11 +13,16 @@ public class Teacher {
 	private String name;
 	private Set<Student> students = new HashSet<Student>();
 	
+	//多对多单向关联，老师知道哪些个学生被教，学生不知道哪些个老师教自己
+//	@ManyToMany
+//	@JoinTable(name="t_s",
+//			joinColumns= {@JoinColumn(name="teacher_id")},
+//			inverseJoinColumns= {@JoinColumn(name="student_idd")}
+//			)
+	
+	//多对多双向关联
 	@ManyToMany
-	@JoinTable(name="t_s",
-			joinColumns= {@JoinColumn(name="teacher_id")},
-			inverseJoinColumns= {@JoinColumn(name="student_idd")}
-			)
+	
 	public Set<Student> getstudents() {
 		return students;
 	}
