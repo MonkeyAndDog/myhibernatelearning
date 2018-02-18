@@ -211,6 +211,73 @@ public class TestTopic {
 		
 		session.getTransaction().commit();
 	}
+	
+	//学习使用uniqueResult
+	@Test
+	public void HQL_11_test() {
+		testSave();
+		session.beginTransaction();
+		Query q = session.createQuery("from Msg m where m = :MsgToSerch");
+
+		Msg m = new Msg();
+		m.setId(1);
+		q.setParameter("MsgToSerch", m);
+		Msg result = (Msg) q.uniqueResult();
+		System.out.println(result.getCont());
+		session.getTransaction().commit();
+	}
+	
+	//查询总数
+	@Test
+	public void HQL_12_test() {
+		testSave();
+		session.beginTransaction();
+		Query q = session.createQuery("select count(*) from Msg m");
+
+		long count = (long)q.uniqueResult();
+		System.out.println(count);
+		session.getTransaction().commit();
+	}
+	
+	@Test
+	public void HQL_13_test() {
+		testSave();
+		session.beginTransaction();
+		Query q = session.createQuery("from Msg m where m.id between 3 and 5");
+
+		for(Object o:q.list()) {
+			Msg m = (Msg)o;
+			System.out.println(m.getId() + "" + m.getCont());
+		}
+		
+		session.getTransaction().commit();
+	}
+	
+	@Test
+	public void HQL_14_test() {
+		testSave();
+		session.beginTransaction();
+		Query q = session.createQuery("from Msg m where m.id in (3, 4, 5, 6)");
+
+		for(Object o:q.list()) {
+			Msg m = (Msg)o;
+			System.out.println(m.getId() + "" + m.getCont());
+		}
+		session.getTransaction().commit();
+	}
+	
+	@Test
+	public void HQL_15_test() {
+		testSave();
+		session.beginTransaction();
+		Query q = session.createQuery("from Msg m where m.cont is not null");
+
+		for(Object o:q.list()) {
+			Msg m = (Msg)o;
+			System.out.println(m.getId() + "" + m.getCont());
+		}
+		session.getTransaction().commit();
+	}
 }
 
 

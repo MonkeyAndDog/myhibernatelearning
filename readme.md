@@ -187,7 +187,46 @@ private void print(Org o, int level) {
 8. Hibernate查询（HQL）
 	1. NativeSQL > HQL
 	2. QL应该和导航关系结合，方便查询
+	3. 用例：
+		* from Class.Name -> 查询整个表，返回一个List
+		* from Class.Name c where c.property >/=/<... 
+		* from Class.Name c order by c.property asc(升序)
+		* select distinct from Class.Name
+		* 带参数的 --- from Class.Name c where c.property > :min and c.property <= :max -> setParameter("max", "...");
+		* 分页操作--- from Class.Name c order by c.property asc -> query.setMaxResults(),query.setFirstResult();
+		* select c.property1, c.property.2 from Class.Name c.order by c.property asc;
+		* join操作---select t.title, c.name from Topic t join t.category c
+		* 查询总数---select count(*) from Class.Name c;
+		* like的使用---from Class.Name c where c.property like '%_';
+		
+		
+9. 性能优化
+	1. 注意session.clear()运用，尤其是在不断分页循环的时候
+		* 在一个大集合中进行遍历
+		* 另一种形式的内存泄露
+	2. 1+N问题
+	3. iterate
+	4. 一级缓存二级缓存和三级缓存
+		* 什么是缓存
+		* 什么是一级缓存，session级别的缓存
+		* 什么是二级缓存，SessionFactory级别的缓存，可以跨session存在
+		* 打开二级缓存
+			* hibernate.cfg.xml设定
+			><property<br>
+			>name="cache.use_second_level_cache">true</property><br>
+			><property<br>
+			>name="cache.provider_class">org.hibernate.cache.EhCacheProvider</property><br>
+			* @Cache注解
+		* 什么适合二级缓存
+			1. 经常被访问
+			2. 改动不会很大
+			3. 数量有限
+		* 测试环境：大量的重复查询，观察JUnit运行时间
+		* 三级缓存：重复相同的查询
+10. 数据库的事务隔离机制
+	* read-commited
 	
+			
 	
 	
 	

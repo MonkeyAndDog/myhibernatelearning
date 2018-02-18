@@ -23,8 +23,14 @@
        	<property name="current_session_context_class">thread</property>
 
         <!-- Disable the second-level cache  -->
-        <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
-
+        <!-- <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property> -->
+		<!--  
+		<property name="cache.use_second_level_cache">true</property>
+		<property name="cache.provider_class">org.hibernate.cache.EhCacheProvider</property>-->
+		<property name="cache.use_second_level_cache">true</property>
+		<property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
+		
+       
         <!-- Echo all executed SQL to stdout -->
         <property name="show_sql">true</property>
 
@@ -68,12 +74,19 @@
 		<mapping class="com.mrhu.hibernate.coursescorestudent.Student"></mapping>
 		<mapping class="com.mrhu.hibernate.coursescorestudent.Score"></mapping>
 		<mapping class="com.mrhu.hibernate.coursescorestudent.Course"></mapping>
-		-->
+		
 		
 		<mapping class="com.mrhu.hibernate.topic.Category"></mapping>
 		<mapping class="com.mrhu.hibernate.topic.Msg"></mapping>
 		<mapping class="com.mrhu.hibernate.topic.Topic"></mapping>
 		
+		
+		<mapping class="com.mrhu.hibernate.topic.Category"></mapping>
+		<mapping class="com.mrhu.hibernate.topic.Msg"></mapping>
+		<mapping class="com.mrhu.hibernate.topic.Topic"></mapping>
+		-->
+		
+		<mapping class="com.mrhu.hibernate.concurrency.Account"/>
     </session-factory>
 
 </hibernate-configuration>

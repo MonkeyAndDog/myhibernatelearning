@@ -1,12 +1,9 @@
-package com.mrhu.hibernate.topic;
+package com.mrhu.hibernate.topic2;
 
 import javax.persistence.*;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 @Entity
 @SequenceGenerator(name="categorySEQ", sequenceName="categorySEQ_DB")
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Category {
 	private int id;
 	private String name;
